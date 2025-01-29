@@ -3,6 +3,7 @@ package com.todo.todoapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.components.CustomButton;
 import com.todo.todoapp.service.LoadViewService;
 
@@ -30,7 +31,7 @@ public class NewTaskFormViewController {
 
 	@FXML
 	private void initialize() {
-		titleLabel.setText("Application title");
+		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
 		newTaskTitleLabel.setText("New Task");
 		nameLabel.setText("Task description: ");
 
