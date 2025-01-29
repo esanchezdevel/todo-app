@@ -29,7 +29,7 @@ public class JavaFxApplication extends Application {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/main-view.fxml"));
 		loader.setControllerFactory(SpringContext::getBean); // Use Spring for controllers
-		Scene scene = new Scene(loader.load(), 800, 800);
+		Scene scene = new Scene(loader.load(), Constants.APP_WIDTH, Constants.APP_HEIGHT);
 
 		stage.setTitle(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
 		stage.setResizable(false);
