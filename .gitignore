@@ -34,3 +34,4 @@ build/
 
 ### Application storage files ###
 categories.json
+tasks.json

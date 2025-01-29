@@ -1,5 +1,6 @@
 package com.todo.todoapp.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,8 +10,11 @@ import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.CustomButton;
+import com.todo.todoapp.domain.model.Task;
+import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.CategoriesService;
 import com.todo.todoapp.domain.service.LoadViewService;
+import com.todo.todoapp.domain.service.TasksService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,6 +43,9 @@ public class NewTaskFormViewController {
 	@Autowired
 	private CategoriesService categoriesService;
 
+	@Autowired
+	private TasksService tasksService;
+
 	@FXML
 	private void initialize() {
 		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
@@ -60,9 +67,18 @@ public class NewTaskFormViewController {
 		logger.info("Task to store: " + nameField.getText());
 		logger.info("Category: " + categoryComboBox.getValue());
 
-		nameField.setText("");
+		Task task = new Task();
+		task.setTitle(nameField.getText());
+		task.setNotes("");
+		task.setCategory(categoryComboBox.getValue());
+		task.setStatus(TasksStatus.TODO);
+		task.setCreated(LocalDateTime.now().toString());
+		task.setLastUpdated(null);
+		task.setStart(null);
+		task.setFinish(null);
 
-		// TODO store the new task
-		// TODO redirect to other view
+		tasksService.store(task);
+
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
 }
