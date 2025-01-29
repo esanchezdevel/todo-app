@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.todo.todoapp.components.*?>
+<?import com.todo.todoapp.application.components.*?>
 
 <!-- new category form -->
 <AnchorPane fx:id="newCategoryFormPane" 
