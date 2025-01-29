@@ -3,7 +3,7 @@ package com.todo.todoapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.todo.todoapp.service.LoadViewService;
+import com.todo.todoapp.domain.service.LoadViewService;
 
 import javafx.fxml.FXML;
 

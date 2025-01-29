@@ -1,4 +1,4 @@
-package com.todo.todoapp.components;
+package com.todo.todoapp.application.components;
 
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;

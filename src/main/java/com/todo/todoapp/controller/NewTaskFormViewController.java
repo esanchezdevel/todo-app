@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
-import com.todo.todoapp.components.CustomButton;
-import com.todo.todoapp.service.LoadViewService;
+import com.todo.todoapp.application.components.CustomButton;
+import com.todo.todoapp.domain.service.LoadViewService;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 

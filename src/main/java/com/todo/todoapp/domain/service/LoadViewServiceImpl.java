@@ -1,4 +1,4 @@
-package com.todo.todoapp.service;
+package com.todo.todoapp.domain.service;
 
 import org.springframework.stereotype.Service;
 
