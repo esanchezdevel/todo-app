@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.todo.todoapp.components.*?>
 
 <!-- welcome -->
 <AnchorPane fx:id="welcomePane" 
@@ -14,7 +15,7 @@
 
     <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
 
-    <Button fx:id="newTaskButton" text="Click Me" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
-    <Button fx:id="newCategoryButton" text="Click Me" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
+    <CustomButton fx:id="newTaskButton" text="Click Me" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
+    <CustomButton fx:id="newCategoryButton" text="Click Me" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
 
 </AnchorPane>

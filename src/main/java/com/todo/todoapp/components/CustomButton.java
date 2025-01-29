@@ -7,14 +7,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
-public class CustomButton {
+public class CustomButton extends Button {
 	
 	private static BackgroundFill blueBackground = new BackgroundFill(Color.LIGHTBLUE, new CornerRadii(5), null);
 
-	public static void customize(Button button, String text) {
-		button.setText(text);
-		button.setPrefSize(100.0, 20.0);
-		button.setBackground(new Background(blueBackground));
+	public CustomButton() {
+		super();
+		customize();
+	}
+
+	private void customize() {
+		this.setPrefSize(100.0, 20.0);
+		this.setBackground(new Background(blueBackground));
 
 		final DropShadow dropShadow = new DropShadow();
         dropShadow.setColor(Color.GRAY);
@@ -23,16 +27,16 @@ public class CustomButton {
         dropShadow.setOffsetY(5);
 
         // Apply the shadow effect to the button
-        button.setEffect(dropShadow);
+        this.setEffect(dropShadow);
 
-		button.setOnMousePressed(event -> {
-			button.setTextFill(Color.WHITE);
-			button.setEffect(null);
+		this.setOnMousePressed(event -> {
+			this.setTextFill(Color.WHITE);
+			this.setEffect(null);
 		});
 
-		button.setOnMouseReleased(event -> {
-			button.setTextFill(Color.BLACK);
-			button.setEffect(dropShadow);
+		this.setOnMouseReleased(event -> {
+			this.setTextFill(Color.BLACK);
+			this.setEffect(dropShadow);
 		});
 	}
 }

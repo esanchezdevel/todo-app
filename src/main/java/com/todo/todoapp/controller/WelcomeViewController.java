@@ -21,7 +21,7 @@ public class WelcomeViewController {
 	@FXML
 	private Label titleLabel;
 	@FXML
-	private Button newTaskButton, newCategoryButton;
+	private CustomButton newTaskButton, newCategoryButton;
 
 	@Autowired
 	private LoadViewService loadViewService;
@@ -29,8 +29,8 @@ public class WelcomeViewController {
 	@FXML
 	private void initialize() {
 		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
-		CustomButton.customize(newTaskButton, "New task");
-		CustomButton.customize(newCategoryButton, "New Category");
+		newTaskButton.setText("New task");
+		newCategoryButton.setText("New Category");
 	}
 
 	@FXML

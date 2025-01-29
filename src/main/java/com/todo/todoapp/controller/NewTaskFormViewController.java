@@ -16,15 +16,11 @@ import javafx.scene.control.TextField;
 public class NewTaskFormViewController {
 	
 	@FXML
-	private Label titleLabel;
-	@FXML
-	private Label newTaskTitleLabel;
-	@FXML
-	private Label nameLabel;
+	private Label titleLabel, newTaskTitleLabel, nameLabel;
 	@FXML
 	private TextField nameField;
 	@FXML
-	private Button submitButton;
+	private CustomButton submitButton;
 
 	@Autowired
 	private LoadViewService loadViewService;
@@ -35,7 +31,7 @@ public class NewTaskFormViewController {
 		newTaskTitleLabel.setText("New Task");
 		nameLabel.setText("Task description: ");
 
-		CustomButton.customize(submitButton, "Create");
+		submitButton.setText("Create");
 		
 		nameField.setPrefWidth(500.0);
 	}
