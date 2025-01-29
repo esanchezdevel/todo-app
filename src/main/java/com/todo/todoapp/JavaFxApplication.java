@@ -4,6 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.todo.todoapp.application.Constants;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +31,8 @@ public class JavaFxApplication extends Application {
 		loader.setControllerFactory(SpringContext::getBean); // Use Spring for controllers
 		Scene scene = new Scene(loader.load(), 800, 800);
 
-		stage.setTitle("ToDo Application");
+		stage.setTitle(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
+		stage.setResizable(false);
 		stage.setScene(scene);
 		stage.show();
 	}
