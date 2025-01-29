@@ -1,6 +1,7 @@
 package com.todo.todoapp.domain.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,5 +27,16 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 		// store all the categories in the file overwritting it
 		categoryRepository.store(categories);		
+	}
+
+
+	@Override
+	public List<String> getAllNames() {
+		List<Category> categories = categoryRepository.getAll();
+
+		return categories
+					.stream()
+					.map(Category::getName)
+					.collect(Collectors.toList());
 	}
 }

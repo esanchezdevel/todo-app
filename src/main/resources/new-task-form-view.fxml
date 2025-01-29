@@ -15,10 +15,14 @@
 
     <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
 
-    <Label fx:id="newTaskTitleLabel" text="" style="-fx-font-size: 20;" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="40.0" />
-    <Label fx:id="nameLabel" text="Enter your name:" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="40.0"/>
+    <Label fx:id="newTaskTitleLabel" text="" style="-fx-font-size: 20; -fx-font-weight: bold;" AnchorPane.topAnchor="100.0" AnchorPane.leftAnchor="40.0" />
+    
+    <Label fx:id="nameLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="40.0"/>
     <TextField fx:id="nameField" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="160.0"/>
 
-    <CustomButton fx:id="submitButton" text="Submit" onAction="#createTask" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="40.0"/>
+    <Label fx:id="categoryLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="40.0"/>
+    <ComboBox fx:id="categoryComboBox" prefWidth="150.0" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="160.0" />
+
+    <CustomButton fx:id="submitButton" text="Submit" onAction="#createTask" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="40.0"/>
 
 </AnchorPane>

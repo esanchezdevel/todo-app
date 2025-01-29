@@ -1,44 +1,68 @@
 package com.todo.todoapp.controller;
 
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.CustomButton;
+import com.todo.todoapp.domain.service.CategoriesService;
 import com.todo.todoapp.domain.service.LoadViewService;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 @Component
 public class NewTaskFormViewController {
 	
+	private static final Logger logger = LogManager.getLogger(NewTaskFormViewController.class);
+
 	@FXML
-	private Label titleLabel, newTaskTitleLabel, nameLabel;
+	private Label titleLabel, newTaskTitleLabel, nameLabel, categoryLabel;
 	@FXML
 	private TextField nameField;
+	@FXML
+	private ComboBox<String> categoryComboBox;
 	@FXML
 	private CustomButton submitButton;
 
 	@Autowired
 	private LoadViewService loadViewService;
 
+	@Autowired
+	private CategoriesService categoriesService;
+
 	@FXML
 	private void initialize() {
 		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
 		newTaskTitleLabel.setText("New Task");
 		nameLabel.setText("Task description: ");
+		categoryLabel.setText("Category: ");
 
 		submitButton.setText("Create");
 		
 		nameField.setPrefWidth(500.0);
+
+		List<String> categories = categoriesService.getAllNames();
+		ObservableList<String> observableCategories = FXCollections.observableArrayList(categories);
+		categoryComboBox.setItems(observableCategories);
 	}
 
 	@FXML
 	public void createTask() {
-		System.out.println("Task to store: " + nameField.getText());
+		logger.info("Task to store: " + nameField.getText());
+		logger.info("Category: " + categoryComboBox.getValue());
 
 		nameField.setText("");
+
+		// TODO store the new task
+		// TODO redirect to other view
 	}
 }
