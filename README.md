@@ -1,7 +1,6 @@
 # ToDo Application
 
 ## Overview
-The purpose of this repository is create a Desktop application using Spring Boot and JavaFX, that let the user track the daily tasks that are pending to do.
 This is a desktop application built using **Spring Boot** and **JavaFX**. Its purpose is to help users track their daily tasks and manage various task categories. Users can create, edit, and delete categories and tasks, keeping their to-do list organized and efficient.
 
 ## Features
