@@ -43,5 +43,7 @@ public class WelcomeViewController {
 	@FXML
 	public void newCategoryAction() {
 		logger.info("Showing new category form...");
+
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-category-form-view.fxml");
 	}
 }
