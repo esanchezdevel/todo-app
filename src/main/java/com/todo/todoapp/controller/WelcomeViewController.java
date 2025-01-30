@@ -26,6 +26,55 @@ public class WelcomeViewController {
 	@Autowired
 	private LoadViewService loadViewService;
 
+	private static final String TODO_LABEL_INIT_STYLE = "-fx-font-size: 15px;" +
+														"-fx-background-color: #aed6f1;" +
+														"-fx-padding: 20px 20px 5px 20px;" +
+														"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String INPROGRESS_LABEL_INIT_STYLE = "-fx-font-size: 15px;" +
+																"-fx-background-color: #f9e79f;" +
+																"-fx-padding: 20px 20px 5px 20px;" +
+																"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String DONE_LABEL_INIT_STYLE = "-fx-font-size: 15px;" +
+														"-fx-background-color: #abebc6;" +
+														"-fx-padding: 20px 20px 5px 20px;" +
+														"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String CANCELLED_LABEL_INIT_STYLE = "-fx-font-size: 15px;" +
+															"-fx-background-color: #f5b7b1;" +
+															"-fx-padding: 20px 20px 5px 20px;" +
+															"-fx-background-radius: 10px 10px 0px 0px;";
+
+
+	private static final String TODO_LABEL_ACTIVE_STYLE = "-fx-font-size: 15px;" +
+														"-fx-background-color: #aed6f1;" +
+														"-fx-text-fill: white;" +
+														"-fx-padding: 20px 20px 5px 20px;" +
+														"-fx-effect: dropshadow(gaussian, grey, 2, 0.1, 2, -2);" +
+														"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String INPROGRESS_LABEL_ACTIVE_STYLE = "-fx-font-size: 15px;" +
+																"-fx-background-color: #f9e79f;" +
+																"-fx-text-fill: white;" +
+																"-fx-padding: 20px 20px 5px 20px;" +
+																"-fx-effect: dropshadow(gaussian, grey, 2, 0.1, 2, -2);" +
+																"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String DONE_LABEL_ACTIVE_STYLE = "-fx-font-size: 15px;" +
+														"-fx-background-color: #abebc6;" +
+														"-fx-text-fill: white;" +
+														"-fx-padding: 20px 20px 5px 20px;" +
+														"-fx-effect: dropshadow(gaussian, grey, 2, 0.1, 2, -2);" +
+														"-fx-background-radius: 10px 10px 0px 0px;";
+
+	private static final String CANCELLED_LABEL_ACTIVE_STYLE = "-fx-font-size: 15px;" +
+															"-fx-background-color: #f5b7b1;" +
+															"-fx-text-fill: white;" +
+															"-fx-padding: 20px 20px 5px 20px;" +
+															"-fx-effect: dropshadow(gaussian, grey, 2, 0.1, 2, -2);" +
+															"-fx-background-radius: 10px 10px 0px 0px;";
+
 	@FXML
 	private void initialize() {
 		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
@@ -37,20 +86,45 @@ public class WelcomeViewController {
 		doneLabel.setText(TasksStatus.DONE.value());
 		cancelledLabel.setText(TasksStatus.CANCELLED.value());
 
+		toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+		inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+		doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+		cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
+
 		toDoLabel.setOnMouseClicked(event -> {
 			showToDo();
+
+			toDoLabel.setStyle(TODO_LABEL_ACTIVE_STYLE);
+			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		inProgressLabel.setOnMouseClicked(event -> {
 			showInProgress();
+
+			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+			inProgressLabel.setStyle(INPROGRESS_LABEL_ACTIVE_STYLE);
+			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		doneLabel.setOnMouseClicked(event -> {
 			showDone();
+
+			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+			doneLabel.setStyle(DONE_LABEL_ACTIVE_STYLE);
+			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		cancelledLabel.setOnMouseClicked(event -> {
 			showCancelled();
+
+			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+			cancelledLabel.setStyle(CANCELLED_LABEL_ACTIVE_STYLE);
 		});
 	}
 
