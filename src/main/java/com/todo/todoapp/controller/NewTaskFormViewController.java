@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.CustomButton;
+import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.CategoriesService;
@@ -77,8 +78,12 @@ public class NewTaskFormViewController {
 		task.setStart(null);
 		task.setFinish(null);
 
-		tasksService.store(task);
-
+		try {
+			tasksService.store(task);
+		} catch (AppException e) {
+			logger.error("Error storing task '" + task + "' in storage system. errorCode: " + e.getCode() + ", errorMessage: " + e.getMessage());
+		}
+		
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
 }
