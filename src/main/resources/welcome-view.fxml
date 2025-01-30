@@ -23,4 +23,69 @@
     <Label fx:id="doneLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="232.0" />
     <Label fx:id="cancelledLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="309.0" />
 
+
+    <ScrollPane fitToWidth="true" maxHeight="550" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" AnchorPane.topAnchor="225.0" AnchorPane.leftAnchor="40.0">
+        <content>
+            <VBox fx:id="tasksVBox" spacing="10" style="-fx-background-color: white;">
+                <Label maxWidth="700" wrapText="true" text="Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 2 Item 2 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1 Item 1"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 2"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+                <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0" style="-fx-background-color: white;"/>
+                <Label text="Item 3"/>
+            </VBox>
+        </content>
+    </ScrollPane>
+
 </AnchorPane>
