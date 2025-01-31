@@ -6,6 +6,8 @@ import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 
+import javafx.scene.layout.VBox;
+
 public interface TasksService {
 
 	/**
@@ -24,4 +26,12 @@ public interface TasksService {
 	 * @throws AppException When some error happens
 	 */
 	List<Task> getTasksByStatus(TasksStatus status) throws AppException;
+
+	/**
+	 * Show tasks of one specific status in the ScrollPane
+	 * 
+	 * @param tasksVBox The VBox component where the tasks will be added
+	 * @param status The status of the tasks to show
+	 */
+	void showTasksByStatus(VBox tasksVBox, TasksStatus status);
 }

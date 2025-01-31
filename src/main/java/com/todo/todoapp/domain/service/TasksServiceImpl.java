@@ -11,10 +11,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.todo.todoapp.application.components.TasksSeparator;
 import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.infrastructure.storage.TaskRepository;
+
+import javafx.collections.FXCollections;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 @Service
 public class TasksServiceImpl implements TasksService {
@@ -57,6 +64,47 @@ public class TasksServiceImpl implements TasksService {
 			throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error getting tasks with status '" + status.value() + "'");
 		}
 	}
+
+	@Override
+	public void showTasksByStatus(VBox tasksVBox, TasksStatus status) {
+		List<Task> tasks = getTasksByStatus(status);
+
+		tasksVBox.getChildren().clear();
+		tasks.forEach(t -> {
+
+			HBox hBox = new HBox();
+			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
+
+			Label label = new Label();
+			label.setText(t.getTitle());
+			label.setMaxWidth(550);
+			label.setMinWidth(550);
+			label.setWrapText(true);
+			label.setStyle("-fx-font-size: 15px; " +
+							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
+			
+			ComboBox<String> statusCombo = new ComboBox<>();
+			statusCombo.setStyle("-fx-font-size: 12px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
+			statusCombo.setMaxWidth(115);
+			statusCombo.setMinWidth(115);
+			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
+																			TasksStatus.IN_PROGRESS.value(), 
+																			TasksStatus.DONE.value(), 
+																			TasksStatus.CANCELLED.value())));
+			statusCombo.setValue(status.value()); // The default value
+
+			// Add the title and the combo in horizontal
+			hBox.getChildren().add(label);
+			hBox.getChildren().add(statusCombo);
+
+			// Add the (title + combo) and the separator in vertical
+			tasksVBox.getChildren().add(hBox);
+			tasksVBox.getChildren().add(new TasksSeparator());
+		});
+	}
+
 
 	private boolean taskAlreadyExists(List<Task> tasks, Task task) {
 		boolean exists = tasks.stream().anyMatch(t -> task.getTitle().equalsIgnoreCase(t.getTitle()) && 
