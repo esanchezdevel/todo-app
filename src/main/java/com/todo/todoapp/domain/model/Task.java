@@ -1,7 +1,5 @@
 package com.todo.todoapp.domain.model;
 
-import java.time.LocalDateTime;
-
 public class Task extends AppEntity {
 
 	private Long id;

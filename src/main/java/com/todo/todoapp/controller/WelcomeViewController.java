@@ -16,13 +16,9 @@ import com.todo.todoapp.domain.service.LoadViewService;
 import com.todo.todoapp.domain.service.TasksService;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Orientation;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -162,131 +158,27 @@ public class WelcomeViewController {
 
 	public void showToDo() {
 		logger.info("Show ToDo tasks...");
-
-		List<Task> tasks = tasksService.getTasksByStatus(TasksStatus.TODO);
-
-		tasksVBox.getChildren().clear();
-		tasks.forEach(t -> {
-
-			HBox hBox = new HBox();
-			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
-
-			Label label = new Label();
-			label.setText(t.getTitle());
-			label.setMaxWidth(550);
-			label.setMinWidth(550);
-			label.setWrapText(true);
-			label.setStyle("-fx-font-size: 15px; " +
-							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
-			
-			ComboBox<String> statusCombo = new ComboBox<>();
-			statusCombo.setStyle("-fx-font-size: 12px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
-			"-fx-background-color: #ADD8E6;");
-			statusCombo.setMaxWidth(115);
-			statusCombo.setMinWidth(115);
-			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
-																			TasksStatus.IN_PROGRESS.value(), 
-																			TasksStatus.DONE.value(), 
-																			TasksStatus.CANCELLED.value())));
-			statusCombo.setValue(TasksStatus.TODO.value()); // The default value
-
-			// Add the title and the combo in horizontal
-			hBox.getChildren().add(label);
-			hBox.getChildren().add(statusCombo);
-
-			// Add the (title + combo) and the separator in vertical
-			tasksVBox.getChildren().add(hBox);
-			tasksVBox.getChildren().add(new TasksSeparator());
-		});
+		showTasksByStatus(TasksStatus.TODO);
 	}
 
 	public void showInProgress() {
 		logger.info("Show InProgress tasks...");
-
-		List<Task> tasks = tasksService.getTasksByStatus(TasksStatus.IN_PROGRESS);
-
-		tasksVBox.getChildren().clear();
-		tasks.forEach(t -> {
-
-			HBox hBox = new HBox();
-			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
-
-			Label label = new Label();
-			label.setText(t.getTitle());
-			label.setMaxWidth(550);
-			label.setMinWidth(550);
-			label.setWrapText(true);
-			label.setStyle("-fx-font-size: 15px; " +
-							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
-			
-			ComboBox<String> statusCombo = new ComboBox<>();
-			statusCombo.setStyle("-fx-font-size: 12px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
-			"-fx-background-color: #ADD8E6;");
-			statusCombo.setMaxWidth(115);
-			statusCombo.setMinWidth(115);
-			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
-																			TasksStatus.IN_PROGRESS.value(), 
-																			TasksStatus.DONE.value(), 
-																			TasksStatus.CANCELLED.value())));
-			statusCombo.setValue(TasksStatus.IN_PROGRESS.value()); // The default value
-
-			// Add the title and the combo in horizontal
-			hBox.getChildren().add(label);
-			hBox.getChildren().add(statusCombo);
-
-			// Add the (title + combo) and the separator in vertical
-			tasksVBox.getChildren().add(hBox);
-			tasksVBox.getChildren().add(new TasksSeparator());
-		});
+		showTasksByStatus(TasksStatus.IN_PROGRESS);
 	}
 
 	public void showDone() {
 		logger.info("Show Done tasks...");
-
-		List<Task> tasks = tasksService.getTasksByStatus(TasksStatus.DONE);
-
-		tasksVBox.getChildren().clear();
-		tasks.forEach(t -> {
-
-			HBox hBox = new HBox();
-			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
-
-			Label label = new Label();
-			label.setText(t.getTitle());
-			label.setMaxWidth(550);
-			label.setMinWidth(550);
-			label.setWrapText(true);
-			label.setStyle("-fx-font-size: 15px; " +
-							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
-			
-			ComboBox<String> statusCombo = new ComboBox<>();
-			statusCombo.setStyle("-fx-font-size: 12px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
-			"-fx-background-color: #ADD8E6;");
-			statusCombo.setMaxWidth(115);
-			statusCombo.setMinWidth(115);
-			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
-																			TasksStatus.IN_PROGRESS.value(), 
-																			TasksStatus.DONE.value(), 
-																			TasksStatus.CANCELLED.value())));
-			statusCombo.setValue(TasksStatus.DONE.value()); // The default value
-
-			// Add the title and the combo in horizontal
-			hBox.getChildren().add(label);
-			hBox.getChildren().add(statusCombo);
-
-			// Add the (title + combo) and the separator in vertical
-			tasksVBox.getChildren().add(hBox);
-			tasksVBox.getChildren().add(new TasksSeparator());
-		});
+		showTasksByStatus(TasksStatus.DONE);
 	}
 
 	public void showCancelled() {
 		logger.info("Show Cancelled tasks...");
+		showTasksByStatus(TasksStatus.CANCELLED);
+	}
 
-		List<Task> tasks = tasksService.getTasksByStatus(TasksStatus.CANCELLED);
+
+	public void showTasksByStatus(TasksStatus status) {
+		List<Task> tasks = tasksService.getTasksByStatus(status);
 
 		tasksVBox.getChildren().clear();
 		tasks.forEach(t -> {
@@ -312,7 +204,7 @@ public class WelcomeViewController {
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 
 																			TasksStatus.CANCELLED.value())));
-			statusCombo.setValue(TasksStatus.CANCELLED.value()); // The default value
+			statusCombo.setValue(status.value()); // The default value
 
 			// Add the title and the combo in horizontal
 			hBox.getChildren().add(label);
