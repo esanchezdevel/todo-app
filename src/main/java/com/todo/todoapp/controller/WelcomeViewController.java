@@ -169,13 +169,22 @@ public class WelcomeViewController {
 		tasks.forEach(t -> {
 
 			HBox hBox = new HBox();
+			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
 
 			Label label = new Label();
 			label.setText(t.getTitle());
-			label.setMaxWidth(700);
+			label.setMaxWidth(550);
+			label.setMinWidth(550);
 			label.setWrapText(true);
+			label.setStyle("-fx-font-size: 15px; " +
+							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 			
 			ComboBox<String> statusCombo = new ComboBox<>();
+			statusCombo.setStyle("-fx-font-size: 12px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
+			statusCombo.setMaxWidth(115);
+			statusCombo.setMinWidth(115);
 			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 
@@ -201,13 +210,22 @@ public class WelcomeViewController {
 		tasks.forEach(t -> {
 
 			HBox hBox = new HBox();
+			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
 
 			Label label = new Label();
 			label.setText(t.getTitle());
-			label.setMaxWidth(700);
+			label.setMaxWidth(550);
+			label.setMinWidth(550);
 			label.setWrapText(true);
+			label.setStyle("-fx-font-size: 15px; " +
+							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 			
 			ComboBox<String> statusCombo = new ComboBox<>();
+			statusCombo.setStyle("-fx-font-size: 12px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
+			statusCombo.setMaxWidth(115);
+			statusCombo.setMinWidth(115);
 			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 
@@ -233,13 +251,22 @@ public class WelcomeViewController {
 		tasks.forEach(t -> {
 
 			HBox hBox = new HBox();
+			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
 
 			Label label = new Label();
 			label.setText(t.getTitle());
-			label.setMaxWidth(700);
+			label.setMaxWidth(550);
+			label.setMinWidth(550);
 			label.setWrapText(true);
+			label.setStyle("-fx-font-size: 15px; " +
+							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 			
 			ComboBox<String> statusCombo = new ComboBox<>();
+			statusCombo.setStyle("-fx-font-size: 12px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
+			statusCombo.setMaxWidth(115);
+			statusCombo.setMinWidth(115);
 			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 
@@ -265,13 +292,22 @@ public class WelcomeViewController {
 		tasks.forEach(t -> {
 
 			HBox hBox = new HBox();
+			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
 
 			Label label = new Label();
 			label.setText(t.getTitle());
-			label.setMaxWidth(700);
+			label.setMaxWidth(550);
+			label.setMinWidth(550);
 			label.setWrapText(true);
+			label.setStyle("-fx-font-size: 15px; " +
+							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 			
 			ComboBox<String> statusCombo = new ComboBox<>();
+			statusCombo.setStyle("-fx-font-size: 12px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
+			statusCombo.setMaxWidth(115);
+			statusCombo.setMinWidth(115);
 			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 

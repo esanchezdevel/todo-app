@@ -1,0 +1,7 @@
+.scroll-pane {
+    -fx-background: white; /* Background of the ScrollPane itself */
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: white; /* Background of the scrolling area (viewport) */
+}
