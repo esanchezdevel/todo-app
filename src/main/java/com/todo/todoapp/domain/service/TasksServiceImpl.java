@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 
 import com.todo.todoapp.application.components.TasksSeparator;
 import com.todo.todoapp.application.exception.AppException;
+import com.todo.todoapp.controller.MainWindowController;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.infrastructure.storage.TaskRepository;
@@ -31,6 +32,9 @@ public class TasksServiceImpl implements TasksService {
 	@Autowired
 	@Qualifier("TaskRepository")
 	private TaskRepository taskRepository;
+
+	@Autowired
+	private LoadViewService loadViewService;
 
 	@Override
 	public void store(Task task) throws AppException {
@@ -95,6 +99,24 @@ public class TasksServiceImpl implements TasksService {
 																			TasksStatus.CANCELLED.value())));
 			statusCombo.setValue(status.value()); // The default value
 
+			// When a task status changed, update it automatically
+			statusCombo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				logger.info("New status of task '{}': {}", t.getTitle(), newValue);
+				
+				 TasksStatus newStatus = switch (newValue) {
+					case "ToDo" -> TasksStatus.TODO;
+					case "In Progress" -> TasksStatus.IN_PROGRESS;
+					case "Done" -> TasksStatus.DONE;
+					case "Cancelled" -> TasksStatus.CANCELLED;
+					default -> TasksStatus.TODO;
+				};
+
+				updateTaskStatus(t, newStatus);
+
+				//loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
+				showTasksByStatus(tasksVBox, status);
+			});
+
 			// Add the title and the combo in horizontal
 			hBox.getChildren().add(label);
 			hBox.getChildren().add(statusCombo);
@@ -103,6 +125,17 @@ public class TasksServiceImpl implements TasksService {
 			tasksVBox.getChildren().add(hBox);
 			tasksVBox.getChildren().add(new TasksSeparator());
 		});
+	}
+
+
+	@Override
+	public void updateTaskStatus(Task task, TasksStatus status) {
+		List<Task> tasks = taskRepository.getAll();
+		tasks.forEach(t -> {
+			if (t.getId() == task.getId())
+				t.setStatus(status);
+		});
+		taskRepository.store(tasks);
 	}
 
 

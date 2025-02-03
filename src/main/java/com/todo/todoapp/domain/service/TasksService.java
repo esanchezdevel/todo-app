@@ -34,4 +34,12 @@ public interface TasksService {
 	 * @param status The status of the tasks to show
 	 */
 	void showTasksByStatus(VBox tasksVBox, TasksStatus status);
+
+	/**
+	 * Update the "status" of one specific task
+	 * 
+	 * @param task The task to be updated
+	 * @param status The new status to be set
+	 */
+	void updateTaskStatus(Task task, TasksStatus status);
 }
