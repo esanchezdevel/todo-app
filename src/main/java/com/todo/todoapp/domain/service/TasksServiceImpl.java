@@ -34,7 +34,7 @@ public class TasksServiceImpl implements TasksService {
 	private TaskRepository taskRepository;
 
 	@Autowired
-	private LoadViewService loadViewService;
+	private CategoriesService categoriesService;
 
 	@Override
 	public void store(Task task) throws AppException {
@@ -71,59 +71,80 @@ public class TasksServiceImpl implements TasksService {
 
 	@Override
 	public void showTasksByStatus(VBox tasksVBox, TasksStatus status) {
+
+		List<String> categories = categoriesService.getAllNames();
+
 		List<Task> tasks = getTasksByStatus(status);
 
-		tasksVBox.getChildren().clear();
-		tasks.forEach(t -> {
+		tasksVBox.getChildren().clear(); // Clear the view from previous tasks showed
 
-			HBox hBox = new HBox();
-			hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
+		categories.forEach(category -> {
 
-			Label label = new Label();
-			label.setText(t.getTitle());
-			label.setMaxWidth(550);
-			label.setMinWidth(550);
-			label.setWrapText(true);
-			label.setStyle("-fx-font-size: 15px; " +
-							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
+			Label categoryLabel = new Label();
+			categoryLabel.setText(category + ":");
+			categoryLabel.setMaxWidth(675);
+			categoryLabel.setMinWidth(675);
+			categoryLabel.setWrapText(true);
+			categoryLabel.setStyle("-fx-font-size: 15px; " +
+						   	"-fx-font-weight: bold;" +
+							"-fx-padding: 2px 10px 2px 10px;" + 
+							"-fx-background-color: lightgrey;" +
+							"-fx-effect: dropshadow(gaussian, grey, 2, 0.2, 2, 2);"); // top right bottom left
+			tasksVBox.getChildren().add(categoryLabel);
 			
-			ComboBox<String> statusCombo = new ComboBox<>();
-			statusCombo.setStyle("-fx-font-size: 12px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
-			"-fx-background-color: #ADD8E6;");
-			statusCombo.setMaxWidth(115);
-			statusCombo.setMinWidth(115);
-			statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
-																			TasksStatus.IN_PROGRESS.value(), 
-																			TasksStatus.DONE.value(), 
-																			TasksStatus.CANCELLED.value())));
-			statusCombo.setValue(status.value()); // The default value
+			tasks.forEach(t -> {
+	
+				if (!category.equalsIgnoreCase(t.getCategory())) 
+					return; // skip this iteration
 
-			// When a task status changed, update it automatically
-			statusCombo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-				logger.info("New status of task '{}': {}", t.getTitle(), newValue);
+				HBox hBox = new HBox();
+				hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
+	
+				Label label = new Label();
+				label.setText(t.getTitle());
+				label.setMaxWidth(550);
+				label.setMinWidth(550);
+				label.setWrapText(true);
+				label.setStyle("-fx-font-size: 15px; " +
+								"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 				
-				 TasksStatus newStatus = switch (newValue) {
-					case "ToDo" -> TasksStatus.TODO;
-					case "In Progress" -> TasksStatus.IN_PROGRESS;
-					case "Done" -> TasksStatus.DONE;
-					case "Cancelled" -> TasksStatus.CANCELLED;
-					default -> TasksStatus.TODO;
-				};
-
-				updateTaskStatus(t, newStatus);
-
-				//loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
-				showTasksByStatus(tasksVBox, status);
+				ComboBox<String> statusCombo = new ComboBox<>();
+				statusCombo.setStyle("-fx-font-size: 12px; " +
+				"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+				"-fx-background-color: #ADD8E6;");
+				statusCombo.setMaxWidth(115);
+				statusCombo.setMinWidth(115);
+				statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
+																				TasksStatus.IN_PROGRESS.value(), 
+																				TasksStatus.DONE.value(), 
+																				TasksStatus.CANCELLED.value())));
+				statusCombo.setValue(status.value()); // The default value
+	
+				// When a task status changed, update it automatically
+				statusCombo.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+					logger.info("New status of task '{}': {}", t.getTitle(), newValue);
+					
+					 TasksStatus newStatus = switch (newValue) {
+						case "ToDo" -> TasksStatus.TODO;
+						case "In Progress" -> TasksStatus.IN_PROGRESS;
+						case "Done" -> TasksStatus.DONE;
+						case "Cancelled" -> TasksStatus.CANCELLED;
+						default -> TasksStatus.TODO;
+					};
+	
+					updateTaskStatus(t, newStatus);
+	
+					showTasksByStatus(tasksVBox, status);
+				});
+	
+				// Add the title and the combo in horizontal
+				hBox.getChildren().add(label);
+				hBox.getChildren().add(statusCombo);
+	
+				// Add the (title + combo) and the separator in vertical
+				tasksVBox.getChildren().add(hBox);
+				tasksVBox.getChildren().add(new TasksSeparator());
 			});
-
-			// Add the title and the combo in horizontal
-			hBox.getChildren().add(label);
-			hBox.getChildren().add(statusCombo);
-
-			// Add the (title + combo) and the separator in vertical
-			tasksVBox.getChildren().add(hBox);
-			tasksVBox.getChildren().add(new TasksSeparator());
 		});
 	}
 
