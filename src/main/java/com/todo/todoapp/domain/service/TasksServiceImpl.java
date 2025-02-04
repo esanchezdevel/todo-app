@@ -174,11 +174,14 @@ public class TasksServiceImpl implements TasksService {
 	public void update(Task task) {
 		List<Task> tasks = taskRepository.getAll();
 		tasks.forEach(t -> {
-			if (t.getId() == task.getId())
+			if (t.getId() == task.getId()) {
+				logger.info("Task to be updated found with id {}", t.getId());
 				t.setTitle(task.getTitle());
 				t.setCategory(task.getCategory());
 				t.setNotes(task.getNotes());
 				t.setStatus(task.getStatus());
+				logger.info("Task object modified: {}", t);
+			}
 		});
 		taskRepository.store(tasks);
 	}

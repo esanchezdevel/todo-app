@@ -92,7 +92,7 @@ public class TaskDetailsViewController {
 
 	@FXML
 	private void editTask (){
-		logger.info("Edit task clicked...");
+		logger.info("Edit task '{}' clicked...", task.getId());
 
 		Task editedTask = new Task();
 		editedTask.setId(task.getId());
@@ -109,6 +109,7 @@ public class TaskDetailsViewController {
 		editedTask.setStatus(newStatus);
 		editedTask.setNotes(notesTextArea.getText());
 
+		logger.info("New task data: {}", editedTask);
 		tasksService.update(editedTask);
 
 		Alerts.showInfoAlert("Task Updated");
