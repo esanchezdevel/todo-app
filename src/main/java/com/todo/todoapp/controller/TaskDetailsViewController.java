@@ -7,10 +7,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.CategoriesService;
 import com.todo.todoapp.domain.service.LoadViewService;
+import com.todo.todoapp.domain.service.TasksService;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -40,6 +42,9 @@ public class TaskDetailsViewController {
 
 	@Autowired
 	private CategoriesService categoriesService;
+
+	@Autowired
+	private TasksService tasksService;
 
 	@FXML
 	private void initialize () {
@@ -81,11 +86,32 @@ public class TaskDetailsViewController {
 																			TasksStatus.DONE.value(), 
 																			TasksStatus.CANCELLED.value())));
 		statusComboBox.setValue(task.getStatus().value());
+
+		notesTextArea.setText(task.getNotes());
 	}
 
 	@FXML
 	private void editTask (){
 		logger.info("Edit task clicked...");
+
+		Task editedTask = new Task();
+		editedTask.setId(task.getId());
+		editedTask.setTitle(nameField.getText());
+		editedTask.setCategory(categoryComboBox.getValue());
+
+		TasksStatus newStatus = switch (statusComboBox.getValue()) {
+			case "ToDo" -> TasksStatus.TODO;
+			case "In Progress" -> TasksStatus.IN_PROGRESS;
+			case "Done" -> TasksStatus.DONE;
+			case "Cancelled" -> TasksStatus.CANCELLED;
+			default -> TasksStatus.TODO;
+		};
+		editedTask.setStatus(newStatus);
+		editedTask.setNotes(notesTextArea.getText());
+
+		tasksService.update(editedTask);
+
+		Alerts.showInfoAlert("Task Updated");
 	}
 
 	@FXML

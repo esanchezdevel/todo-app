@@ -170,6 +170,20 @@ public class TasksServiceImpl implements TasksService {
 	}
 
 
+	@Override
+	public void update(Task task) {
+		List<Task> tasks = taskRepository.getAll();
+		tasks.forEach(t -> {
+			if (t.getId() == task.getId())
+				t.setTitle(task.getTitle());
+				t.setCategory(task.getCategory());
+				t.setNotes(task.getNotes());
+				t.setStatus(task.getStatus());
+		});
+		taskRepository.store(tasks);
+	}
+
+
 	private boolean taskAlreadyExists(List<Task> tasks, Task task) {
 		boolean exists = tasks.stream().anyMatch(t -> task.getTitle().equalsIgnoreCase(t.getTitle()) && 
 														task.getCategory().equalsIgnoreCase(t.getCategory()));

@@ -42,4 +42,11 @@ public interface TasksService {
 	 * @param status The new status to be set
 	 */
 	void updateTaskStatus(Task task, TasksStatus status);
+
+	/**
+	 * Update one task in the storage system
+	 * 
+	 * @param task The task to be updated
+	 */
+	void update(Task task);
 }
