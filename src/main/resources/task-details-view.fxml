@@ -11,15 +11,20 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.todo.todoapp.controller.TaskDetailsViewController">
 
-    <Label fx:id="titleLabel" text="Label Details:" style="-fx-font-size: 20;" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0" />
+    <Label fx:id="titleLabel" text="" style="-fx-font-size: 20;" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0" />
     
+    <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
+
     <Label fx:id="nameLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="40.0"/>
     <TextField fx:id="nameField" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="160.0"/>
 
     <Label fx:id="categoryLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="40.0"/>
     <ComboBox fx:id="categoryComboBox" prefWidth="150.0" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="160.0" />
 
-    <CustomButton fx:id="editButton" text="Return" onAction="#goBack" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="40.0"/>
-    <CustomButton fx:id="editButton" text="Edit" onAction="#editTask" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="500.0"/>
+    <Label fx:id="statusLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="40.0"/>
+    <ComboBox fx:id="statusComboBox" prefWidth="150.0" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="160.0" />
+
+    <CustomButton fx:id="editButton" text="Return" onAction="#goBack" AnchorPane.TopAnchor="260.0" AnchorPane.leftAnchor="40.0"/>
+    <CustomButton fx:id="editButton" text="Edit" onAction="#editTask" AnchorPane.TopAnchor="260.0" AnchorPane.leftAnchor="500.0"/>
 
 </AnchorPane>

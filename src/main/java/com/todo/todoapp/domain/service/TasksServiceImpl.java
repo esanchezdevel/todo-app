@@ -114,7 +114,7 @@ public class TasksServiceImpl implements TasksService {
 
 				label.setOnMouseClicked(event -> {
 					logger.info("Show task details...");
-					TaskDetailsViewController.taskId = t.getId();
+					TaskDetailsViewController.task = t;
 					loadViewService.loadFXML(MainWindowController.contentPaneCopy, "task-details-view.fxml");
 				});
 				
