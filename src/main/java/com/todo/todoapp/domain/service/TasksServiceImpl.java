@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.application.components.TasksSeparator;
 import com.todo.todoapp.application.exception.AppException;
@@ -202,6 +203,15 @@ public class TasksServiceImpl implements TasksService {
 				deleteButton.setText("Remove");
 				deleteButton.setOnMouseClicked(event -> {
 					logger.info("Remove task: {}", t.getTitle());
+
+					Alerts.showConfirmationAlert("Delete Task!", 
+												"Are you sure that you want to delete this task?\n\n '" + t.getTitle() + "'", 
+												() -> {
+														logger.info("User accepted. Proceed to delete task {}", t.getTitle());
+												}, 
+												() -> {
+														logger.info("User canceled the operation. Do nothing");
+												});
 				});
 	
 				// Add the title and the combo in horizontal
