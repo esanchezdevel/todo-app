@@ -100,39 +100,21 @@ public class WelcomeViewController {
 
 		toDoLabel.setOnMouseClicked(event -> {
 			showToDo();
-
-			toDoLabel.setStyle(TODO_LABEL_ACTIVE_STYLE);
-			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
-			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
-			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		inProgressLabel.setOnMouseClicked(event -> {
 			showInProgress();
-
-			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
-			inProgressLabel.setStyle(INPROGRESS_LABEL_ACTIVE_STYLE);
-			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
-			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		doneLabel.setOnMouseClicked(event -> {
 			showDone();
-
-			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
-			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
-			doneLabel.setStyle(DONE_LABEL_ACTIVE_STYLE);
-			cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 		});
 
 		cancelledLabel.setOnMouseClicked(event -> {
 			showCancelled();
-
-			toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
-			inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
-			doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
-			cancelledLabel.setStyle(CANCELLED_LABEL_ACTIVE_STYLE);
 		});
+
+		showToDo();
 	}
 
 	@FXML
@@ -152,20 +134,40 @@ public class WelcomeViewController {
 	public void showToDo() {
 		logger.info("Show ToDo tasks...");
 		tasksService.showTasksByStatus(tasksVBox, TasksStatus.TODO);
+
+		toDoLabel.setStyle(TODO_LABEL_ACTIVE_STYLE);
+		inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+		doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+		cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 	}
 
 	public void showInProgress() {
 		logger.info("Show InProgress tasks...");
 		tasksService.showTasksByStatus(tasksVBox, TasksStatus.IN_PROGRESS);
+
+		toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+		inProgressLabel.setStyle(INPROGRESS_LABEL_ACTIVE_STYLE);
+		doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+		cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 	}
 
 	public void showDone() {
 		logger.info("Show Done tasks...");
 		tasksService.showTasksByStatus(tasksVBox, TasksStatus.DONE);
+
+		toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+		inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+		doneLabel.setStyle(DONE_LABEL_ACTIVE_STYLE);
+		cancelledLabel.setStyle(CANCELLED_LABEL_INIT_STYLE);
 	}
 
 	public void showCancelled() {
 		logger.info("Show Cancelled tasks...");
 		tasksService.showTasksByStatus(tasksVBox, TasksStatus.CANCELLED);
+
+		toDoLabel.setStyle(TODO_LABEL_INIT_STYLE);
+		inProgressLabel.setStyle(INPROGRESS_LABEL_INIT_STYLE);
+		doneLabel.setStyle(DONE_LABEL_INIT_STYLE);
+		cancelledLabel.setStyle(CANCELLED_LABEL_ACTIVE_STYLE);
 	}
 }
