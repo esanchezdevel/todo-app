@@ -1,5 +1,7 @@
 package com.todo.todoapp.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,8 @@ import javafx.scene.control.TextField;
 @Component
 public class NewCategoryFormViewController {
 	
+	private static final Logger logger = LogManager.getLogger(NewCategoryFormViewController.class);
+
 	@FXML
 	private Label titleLabel, newCategoryTitleLabel, nameLabel;
 	@FXML
@@ -41,10 +45,16 @@ public class NewCategoryFormViewController {
 
 	@FXML
 	public void createCategory() {
-		System.out.println("Category to store: " + nameField.getText());
+		logger.info("Category to store: {}", nameField.getText());
 
 		categoriesService.store(nameField.getText());
 
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
+	}
+
+	@FXML
+	private void goBack () {
+		logger.info("Go back to welcome view...");
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
 }

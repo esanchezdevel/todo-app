@@ -88,4 +88,10 @@ public class NewTaskFormViewController {
 		
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
+
+	@FXML
+	private void goBack () {
+		logger.info("Go back to welcome view...");
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
+	}
 }
