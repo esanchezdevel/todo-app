@@ -16,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 @Component
@@ -26,11 +27,13 @@ public class TaskDetailsViewController {
 	public static Task task;
 
 	@FXML
-	private Label titleLabel, nameLabel, categoryLabel, statusLabel;
+	private Label titleLabel, nameLabel, categoryLabel, statusLabel, notesLabel;
 	@FXML
 	private TextField nameField;
 	@FXML
 	private ComboBox<String> categoryComboBox, statusComboBox;
+	@FXML
+	private TextArea notesTextArea;
 
 	@Autowired
 	private LoadViewService loadViewService;
@@ -55,6 +58,10 @@ public class TaskDetailsViewController {
 		statusLabel.setText("Status:");
 		statusLabel.setMinWidth(200);
 		statusLabel.setMaxWidth(200);
+
+		notesLabel.setText("Notes:");
+		notesLabel.setMinWidth(200);
+		notesLabel.setMaxWidth(200);
 
 		categoryComboBox.setStyle("-fx-font-size: 12px; " +
 			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left

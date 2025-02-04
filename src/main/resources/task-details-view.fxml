@@ -24,7 +24,10 @@
     <Label fx:id="statusLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="40.0"/>
     <ComboBox fx:id="statusComboBox" prefWidth="150.0" AnchorPane.TopAnchor="220.0" AnchorPane.leftAnchor="160.0" />
 
-    <CustomButton fx:id="editButton" text="Return" onAction="#goBack" AnchorPane.TopAnchor="260.0" AnchorPane.leftAnchor="40.0"/>
-    <CustomButton fx:id="editButton" text="Edit" onAction="#editTask" AnchorPane.TopAnchor="260.0" AnchorPane.leftAnchor="500.0"/>
+    <Label fx:id="notesLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="260.0" AnchorPane.leftAnchor="40.0"/>
+    <TextArea fx:id="notesTextArea" layoutX="50" layoutY="50" prefWidth="600" prefHeight="150" AnchorPane.TopAnchor="290.0" AnchorPane.leftAnchor="40.0" />
+
+    <CustomButton fx:id="editButton" text="Return" onAction="#goBack" AnchorPane.TopAnchor="490.0" AnchorPane.leftAnchor="40.0"/>
+    <CustomButton fx:id="editButton" text="Edit" onAction="#editTask" AnchorPane.TopAnchor="490.0" AnchorPane.leftAnchor="500.0"/>
 
 </AnchorPane>
