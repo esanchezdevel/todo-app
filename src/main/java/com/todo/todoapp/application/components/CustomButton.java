@@ -13,6 +13,7 @@ public class CustomButton extends Button {
 
 	public CustomButton() {
 		super();
+		this.getStyleClass().clear();
 		customize();
 	}
 
@@ -28,6 +29,10 @@ public class CustomButton extends Button {
 
         // Apply the shadow effect to the button
         this.setEffect(dropShadow);
+
+		this.setStyle("-fx-padding: 5px 10px 5px 10px;" + 
+						"-fx-font-size: 12px;" +
+						"-fx-alignment: center;");
 
 		this.setOnMousePressed(event -> {
 			this.setTextFill(Color.WHITE);
