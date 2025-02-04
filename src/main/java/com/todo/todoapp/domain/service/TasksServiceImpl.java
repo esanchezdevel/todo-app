@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.application.components.TasksSeparator;
 import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.controller.MainWindowController;
@@ -196,14 +197,16 @@ public class TasksServiceImpl implements TasksService {
 				label.setStyle("-fx-font-size: 15px; " +
 								"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
 
-				label.setOnMouseClicked(event -> {
-					logger.info("Show task details...");
-					TaskDetailsViewController.task = t;
-					loadViewService.loadFXML(MainWindowController.contentPaneCopy, "task-details-view.fxml");
+
+				CustomButton deleteButton = new CustomButton();
+				deleteButton.setText("Remove");
+				deleteButton.setOnMouseClicked(event -> {
+					logger.info("Remove task: {}", t.getTitle());
 				});
 	
 				// Add the title and the combo in horizontal
 				hBox.getChildren().add(label);
+				hBox.getChildren().add(deleteButton);
 	
 				// Add the (title + combo) and the separator in vertical
 				tasksVBox.getChildren().add(hBox);
