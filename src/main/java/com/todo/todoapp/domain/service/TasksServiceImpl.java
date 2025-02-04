@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import com.todo.todoapp.application.components.TasksSeparator;
 import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.controller.MainWindowController;
+import com.todo.todoapp.controller.TaskDetailsViewController;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.infrastructure.storage.TaskRepository;
@@ -35,6 +36,9 @@ public class TasksServiceImpl implements TasksService {
 
 	@Autowired
 	private CategoriesService categoriesService;
+
+	@Autowired
+	private LoadViewService loadViewService;
 
 	@Override
 	public void store(Task task) throws AppException {
@@ -107,6 +111,12 @@ public class TasksServiceImpl implements TasksService {
 				label.setWrapText(true);
 				label.setStyle("-fx-font-size: 15px; " +
 								"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
+
+				label.setOnMouseClicked(event -> {
+					logger.info("Show task details...");
+					TaskDetailsViewController.taskId = t.getId();
+					loadViewService.loadFXML(MainWindowController.contentPaneCopy, "task-details-view.fxml");
+				});
 				
 				ComboBox<String> statusCombo = new ComboBox<>();
 				statusCombo.setStyle("-fx-font-size: 12px; " +
