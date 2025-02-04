@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
 <?import com.todo.todoapp.application.components.*?>
 
 <!-- welcome -->
@@ -12,7 +13,13 @@
             xmlns:fx="http://javafx.com/fxml" 
             fx:controller="com.todo.todoapp.controller.WelcomeViewController">
 
-    <Label fx:id="titleLabel" text="" style="-fx-font-size: 20;" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0" />
+
+    <ImageView fx:id="logoImage" fitWidth="40" fitHeight="33" AnchorPane.topAnchor="40.0" AnchorPane.leftAnchor="40.0">
+        <image>
+            <Image url="@img/todo_logo_1.png"/>
+        </image>
+    </ImageView>
+    <Label fx:id="titleLabel" text="" style="-fx-font-size: 20;" AnchorPane.topAnchor="45.0" AnchorPane.leftAnchor="80.0" />
 
     <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
 
