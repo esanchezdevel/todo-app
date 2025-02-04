@@ -23,8 +23,9 @@
 
     <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
 
-    <CustomButton fx:id="newTaskButton" text="Click Me" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
-    <CustomButton fx:id="newCategoryButton" text="Click Me" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
+    <CustomButton fx:id="newTaskButton" text="" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
+    <CustomButton fx:id="newCategoryButton" text="" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
+    <CustomButton fx:id="deleteTaskButton" text="" onAction="#deleteTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="280.0" />
 
     <Label fx:id="toDoLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="40.0" />
     <Label fx:id="inProgressLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="117.0" />

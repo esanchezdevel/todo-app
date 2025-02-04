@@ -36,6 +36,13 @@ public interface TasksService {
 	void showTasksByStatus(VBox tasksVBox, TasksStatus status);
 
 	/**
+	 * Show all tasks with a button to delete them
+	 * 
+	 * @param tasksVBox The VBox component where the tasks will be added
+	 */
+	void showTasksToBeDeleted(VBox tasksVBox);
+
+	/**
 	 * Update the "status" of one specific task
 	 * 
 	 * @param task The task to be updated

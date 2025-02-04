@@ -158,6 +158,59 @@ public class TasksServiceImpl implements TasksService {
 		});
 	}
 
+	@Override
+	public void showTasksToBeDeleted(VBox tasksVBox) {
+		List<String> categories = categoriesService.getAllNames();
+
+		List<Task> tasks = taskRepository.getAll();
+
+		tasksVBox.getChildren().clear(); // Clear the view from previous tasks showed
+
+		categories.forEach(category -> {
+
+			Label categoryLabel = new Label();
+			categoryLabel.setText(category + ":");
+			categoryLabel.setMaxWidth(675);
+			categoryLabel.setMinWidth(675);
+			categoryLabel.setWrapText(true);
+			categoryLabel.setStyle("-fx-font-size: 15px; " +
+						   	"-fx-font-weight: bold;" +
+							"-fx-padding: 2px 10px 2px 10px;" + 
+							"-fx-background-color: lightgrey;" +
+							"-fx-effect: dropshadow(gaussian, grey, 2, 0.2, 2, 2);"); // top right bottom left
+			tasksVBox.getChildren().add(categoryLabel);
+			
+			tasks.forEach(t -> {
+	
+				if (!category.equalsIgnoreCase(t.getCategory())) 
+					return; // skip this iteration
+
+				HBox hBox = new HBox();
+				hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
+	
+				Label label = new Label();
+				label.setText(t.getTitle());
+				label.setMaxWidth(550);
+				label.setMinWidth(550);
+				label.setWrapText(true);
+				label.setStyle("-fx-font-size: 15px; " +
+								"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
+
+				label.setOnMouseClicked(event -> {
+					logger.info("Show task details...");
+					TaskDetailsViewController.task = t;
+					loadViewService.loadFXML(MainWindowController.contentPaneCopy, "task-details-view.fxml");
+				});
+	
+				// Add the title and the combo in horizontal
+				hBox.getChildren().add(label);
+	
+				// Add the (title + combo) and the separator in vertical
+				tasksVBox.getChildren().add(hBox);
+				tasksVBox.getChildren().add(new TasksSeparator());
+			});
+		});
+	}
 
 	@Override
 	public void updateTaskStatus(Task task, TasksStatus status) {
