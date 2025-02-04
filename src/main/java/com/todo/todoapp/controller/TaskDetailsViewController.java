@@ -88,6 +88,7 @@ public class TaskDetailsViewController {
 		statusComboBox.setValue(task.getStatus().value());
 
 		notesTextArea.setText(task.getNotes());
+		notesTextArea.setWrapText(true);
 	}
 
 	@FXML
