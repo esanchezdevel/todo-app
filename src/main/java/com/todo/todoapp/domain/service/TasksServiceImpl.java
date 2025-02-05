@@ -1,5 +1,7 @@
 package com.todo.todoapp.domain.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -236,8 +238,11 @@ public class TasksServiceImpl implements TasksService {
 	public void updateTaskStatus(Task task, TasksStatus status) {
 		List<Task> tasks = taskRepository.getAll();
 		tasks.forEach(t -> {
-			if (t.getId() == task.getId())
+			if (t.getId() == task.getId()) {
 				t.setStatus(status);
+				if (status == TasksStatus.DONE || status == TasksStatus.CANCELLED)
+					t.setFinish(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+			}
 		});
 		taskRepository.store(tasks);
 	}

@@ -20,6 +20,8 @@ public class WelcomeViewController {
 
 	private final static Logger logger = LogManager.getLogger(WelcomeViewController.class);
 
+	public static TasksStatus currentStatus = null;
+
 	@FXML
 	private Label titleLabel, toDoLabel, inProgressLabel, doneLabel, cancelledLabel;
 	@FXML
@@ -115,7 +117,22 @@ public class WelcomeViewController {
 			showCancelled();
 		});
 
-		showToDo();
+		if (currentStatus == TasksStatus.TODO) {
+			showToDo();
+			currentStatus = null;
+		} else if (currentStatus == TasksStatus.IN_PROGRESS) {
+			showInProgress();
+			currentStatus = null;
+		} else if (currentStatus == TasksStatus.DONE) {
+			showDone();
+			currentStatus = null;
+		} else if (currentStatus == TasksStatus.CANCELLED) {
+			showCancelled();
+			currentStatus = null;
+		} else {
+			showToDo();
+			currentStatus = null;
+		}
 	}
 
 	@FXML

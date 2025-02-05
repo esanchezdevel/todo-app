@@ -119,6 +119,7 @@ public class TaskDetailsViewController {
 	@FXML
 	private void goBack () {
 		logger.info("Go back to welcome view...");
+		WelcomeViewController.currentStatus = task.getStatus();
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
 }
