@@ -1,7 +1,7 @@
 # ToDo Application
 
 ## Overview
-This is a desktop application built using **Spring Boot** and **JavaFX**. Its purpose is to help users track their daily tasks and manage various task categories. Users can create, edit, and delete categories and tasks, keeping their to-do list organized and efficient.
+Desktop application built using **Spring Boot** and **JavaFX**. Its purpose is to help users track their daily tasks and manage various task categories. Users can create, edit, and delete categories and tasks, keeping their to-do list organized and efficient.
 
 ## Features
 The main features of the application include:
