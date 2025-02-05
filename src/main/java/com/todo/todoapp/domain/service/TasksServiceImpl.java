@@ -52,7 +52,7 @@ public class TasksServiceImpl implements TasksService {
 		if (taskAlreadyExists(tasks, task))
 			throw new AppException(HttpStatus.CONFLICT.value(), "The task ' " + task.getTitle() + "' already exists in category '" + task.getCategory() + "'");
 
-		task.setId(Long.valueOf(tasks.size() + 1));
+		task.setId(tasks.get(tasks.size() - 1).getId() + 1);
 		tasks.add(task);
 
 		taskRepository.store(tasks);
