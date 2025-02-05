@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.CustomButton;
-import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.LoadViewService;
 import com.todo.todoapp.domain.service.TasksService;
 

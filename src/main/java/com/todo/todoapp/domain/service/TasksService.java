@@ -56,4 +56,11 @@ public interface TasksService {
 	 * @param task The task to be updated
 	 */
 	void update(Task task);
+
+	/**
+	 * Delete one task from the storage system
+	 * 
+	 * @param task The task to be deleted
+	 */
+	void delete(Task task);
 }

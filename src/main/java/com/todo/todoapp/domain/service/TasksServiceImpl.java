@@ -208,6 +208,8 @@ public class TasksServiceImpl implements TasksService {
 												"Are you sure that you want to delete this task?\n\n '" + t.getTitle() + "'", 
 												() -> {
 														logger.info("User accepted. Proceed to delete task {}", t.getTitle());
+														delete(t);
+														showTasksToBeDeleted(tasksVBox);
 												}, 
 												() -> {
 														logger.info("User canceled the operation. Do nothing");
@@ -249,6 +251,16 @@ public class TasksServiceImpl implements TasksService {
 				logger.info("Task object modified: {}", t);
 			}
 		});
+		taskRepository.store(tasks);
+	}
+
+
+	@Override
+	public void delete(Task task) {
+		List<Task> tasks = taskRepository.getAll();
+		logger.info("Total number of tasks: {}", tasks.size());
+		tasks.removeIf(t -> t.getId() == task.getId() && t.getTitle().equals(task.getTitle()) && t.getCategory().equals(task.getCategory()));
+		logger.info("Total number of tasks after delete: {}", tasks.size());
 		taskRepository.store(tasks);
 	}
 
