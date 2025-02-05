@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.todo.todoapp.domain.model.Category;
+import com.todo.todoapp.domain.model.Task;
+import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.infrastructure.storage.JsonRepository;
 
 @Service
@@ -38,5 +40,19 @@ public class CategoriesServiceImpl implements CategoriesService {
 					.stream()
 					.map(Category::getName)
 					.collect(Collectors.toList());
+	}
+
+
+	@Override
+	public boolean categoryHasTasks(String category, TasksStatus status, TasksService tasksService) {
+		List<Task> tasks = tasksService.getTasksByStatus(status);
+		boolean result = false;
+		for (Task task : tasks) {
+			if (category.equals(task.getCategory())) {
+				result = true;
+				break;
+			}
+		}
+		return result;
 	}
 }

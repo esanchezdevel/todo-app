@@ -86,6 +86,11 @@ public class TasksServiceImpl implements TasksService {
 
 		categories.forEach(category -> {
 
+			if (!categoriesService.categoryHasTasks(category, status, this)) {
+				logger.info("Skip category '{}'. It doesn't have tasks with status '{}'", category, status.value());
+				return;
+			}
+
 			Label categoryLabel = new Label();
 			categoryLabel.setText(category + ":");
 			categoryLabel.setMaxWidth(675);
