@@ -161,6 +161,7 @@ public class WelcomeViewController {
 	@FXML
 	public void deleteCategoryAction() {
 		logger.info("Showing delete category view");
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "delete-category-view.fxml");
 	}
 
 	public void showToDo() {
