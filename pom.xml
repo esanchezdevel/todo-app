@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.todo</groupId>
 	<artifactId>todo-app</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>todo-app</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -80,6 +80,27 @@
 				<configuration>
 					<mainClass>com.todo.todoapp.JavaFxApplication</mainClass>
 				</configuration>
+			</plugin>
+
+			<!-- JPackage for creating native executables -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.3.0</version>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
