@@ -26,6 +26,7 @@
     <CustomButton fx:id="newTaskButton" text="" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
     <CustomButton fx:id="newCategoryButton" text="" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
     <CustomButton fx:id="deleteTaskButton" text="" onAction="#deleteTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="280.0" />
+    <CustomButton fx:id="deleteCategoryButton" text="" onAction="#deleteCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="400.0" />
 
     <Label fx:id="toDoLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="40.0" />
     <Label fx:id="inProgressLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="117.0" />

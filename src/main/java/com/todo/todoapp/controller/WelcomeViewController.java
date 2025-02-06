@@ -25,7 +25,7 @@ public class WelcomeViewController {
 	@FXML
 	private Label titleLabel, toDoLabel, inProgressLabel, doneLabel, cancelledLabel;
 	@FXML
-	private CustomButton newTaskButton, newCategoryButton, deleteTaskButton;
+	private CustomButton newTaskButton, newCategoryButton, deleteTaskButton, deleteCategoryButton;
 	@FXML
 	private VBox tasksVBox;
 
@@ -90,6 +90,8 @@ public class WelcomeViewController {
 		newTaskButton.setText("New task");
 		newCategoryButton.setText("New Category");
 		deleteTaskButton.setText("Delete Task");
+		deleteCategoryButton.setText("Delete Category");
+		deleteCategoryButton.setPrefWidth(125);
 
 		toDoLabel.setText(TasksStatus.TODO.value());
 		inProgressLabel.setText(TasksStatus.IN_PROGRESS.value());
@@ -154,6 +156,11 @@ public class WelcomeViewController {
 		logger.info("Showing delete task view");
 
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "delete-task-view.fxml");
+	}
+
+	@FXML
+	public void deleteCategoryAction() {
+		logger.info("Showing delete category view");
 	}
 
 	public void showToDo() {
