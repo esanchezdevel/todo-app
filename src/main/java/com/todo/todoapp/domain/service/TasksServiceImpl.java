@@ -114,7 +114,7 @@ public class TasksServiceImpl implements TasksService {
 				hBox.setStyle("-fx-padding: 10px 10px 10px 10px;");
 	
 				Label label = new Label();
-				label.setText(t.getTitle());
+				label.setText(status == TasksStatus.DONE && t.getFinish() != null ? t.getFinish().substring(0, 10) + " - " + t.getTitle() : t.getTitle());
 				label.setMaxWidth(550);
 				label.setMinWidth(550);
 				label.setWrapText(true);

@@ -9,7 +9,6 @@ import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.domain.service.CategoriesService;
 import com.todo.todoapp.domain.service.LoadViewService;
-import com.todo.todoapp.domain.service.TasksService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
