@@ -20,3 +20,6 @@ Before running the application, ensure that you have the following tools install
 
 ## How to run:
 `$ mvn javafx:run`
+
+## How to build Executable:
+`$ jpackage --name DoItNow-v1.0 --input target --main-jar todo-app-1.0.0.jar --main-class org.springframework.boot.loader.launch.JarLauncher --type app-image --runtime-image <path-to-jdk> --icon src\main\resources\img\app_icon.ico`
