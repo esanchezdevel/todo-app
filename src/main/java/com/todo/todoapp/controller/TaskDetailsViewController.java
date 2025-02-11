@@ -1,5 +1,7 @@
 package com.todo.todoapp.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -99,6 +101,10 @@ public class TaskDetailsViewController {
 		editedTask.setId(task.getId());
 		editedTask.setTitle(nameField.getText());
 		editedTask.setCategory(categoryComboBox.getValue());
+		editedTask.setCreated(task.getCreated());
+		editedTask.setLastUpdated(task.getLastUpdated());
+		editedTask.setStart(task.getStart());
+		editedTask.setFinish(task.getFinish());
 
 		TasksStatus newStatus = switch (statusComboBox.getValue()) {
 			case "ToDo" -> TasksStatus.TODO;
@@ -109,6 +115,18 @@ public class TaskDetailsViewController {
 		};
 		editedTask.setStatus(newStatus);
 		editedTask.setNotes(notesTextArea.getText());
+
+		if (newStatus == TasksStatus.DONE || newStatus == TasksStatus.CANCELLED) {
+			editedTask.setFinish(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+		} else if (newStatus == TasksStatus.IN_PROGRESS) {
+			editedTask.setStart(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+			editedTask.setFinish("");
+		} else if (newStatus == TasksStatus.TODO) {
+			editedTask.setStart("");
+			editedTask.setFinish("");
+		}
+
+		editedTask.setLastUpdated(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
 		logger.info("New task data: {}", editedTask);
 		tasksService.update(editedTask);

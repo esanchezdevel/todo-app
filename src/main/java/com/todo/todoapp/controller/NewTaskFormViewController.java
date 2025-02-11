@@ -1,6 +1,7 @@
 package com.todo.todoapp.controller;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -74,7 +75,7 @@ public class NewTaskFormViewController {
 		task.setNotes("");
 		task.setCategory(categoryComboBox.getValue());
 		task.setStatus(TasksStatus.TODO);
-		task.setCreated(LocalDateTime.now().toString());
+		task.setCreated(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 		task.setLastUpdated(null);
 		task.setStart(null);
 		task.setFinish(null);

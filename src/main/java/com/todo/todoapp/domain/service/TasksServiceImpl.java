@@ -240,8 +240,15 @@ public class TasksServiceImpl implements TasksService {
 		tasks.forEach(t -> {
 			if (t.getId() == task.getId()) {
 				t.setStatus(status);
-				if (status == TasksStatus.DONE || status == TasksStatus.CANCELLED)
+				if (status == TasksStatus.DONE || status == TasksStatus.CANCELLED) {
 					t.setFinish(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+				} else if (status == TasksStatus.IN_PROGRESS) {
+					t.setStart(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+					t.setFinish("");
+				} else if (status == TasksStatus.TODO) {
+					t.setStart("");
+					t.setFinish("");
+				}
 			}
 		});
 		taskRepository.store(tasks);
@@ -258,6 +265,10 @@ public class TasksServiceImpl implements TasksService {
 				t.setCategory(task.getCategory());
 				t.setNotes(task.getNotes());
 				t.setStatus(task.getStatus());
+				t.setCreated(task.getCreated());
+				t.setStart(task.getStart());
+				t.setFinish(task.getFinish());
+				t.setLastUpdated(task.getLastUpdated());
 				logger.info("Task object modified: {}", t);
 			}
 		});
