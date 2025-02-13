@@ -31,7 +31,9 @@ public class TaskDetailsViewController {
 	public static Task task;
 
 	@FXML
-	private Label titleLabel, nameLabel, categoryLabel, statusLabel, notesLabel;
+	private Label titleLabel, nameLabel, categoryLabel, createdLabel, createdValueLabel, startedLabel, 
+					startedValueLabel, finishedLabel, finishedValueLabel, lastUpdatedLabel, lastUpdatedValueLabel, 
+					statusLabel, notesLabel;
 	@FXML
 	private TextField nameField;
 	@FXML
@@ -88,6 +90,16 @@ public class TaskDetailsViewController {
 																			TasksStatus.DONE.value(), 
 																			TasksStatus.CANCELLED.value())));
 		statusComboBox.setValue(task.getStatus().value());
+
+		createdLabel.setText("Create:");
+		startedLabel.setText("Start:");
+		finishedLabel.setText("Finish:");
+		lastUpdatedLabel.setText("Last Update:");
+
+		createdValueLabel.setText(task.getCreated());
+		startedValueLabel.setText(task.getStart());
+		finishedValueLabel.setText(task.getFinish());
+		lastUpdatedValueLabel.setText(task.getLastUpdated());
 
 		notesTextArea.setText(task.getNotes());
 		notesTextArea.setWrapText(true);
