@@ -70,6 +70,17 @@ public class NewTaskFormViewController {
 		logger.info("Task to store: " + nameField.getText());
 		logger.info("Category: " + categoryComboBox.getValue());
 
+		if (nameField.getText() == null || nameField.getText().length() == 0) {
+			Alerts.showErrorAlert("Empty Task Description Error", "Mandatory Task Description is empty");
+			loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-task-form-view.fxml");
+			return;
+		}
+		if (categoryComboBox.getValue() == null || categoryComboBox.getValue().length() == 0) {
+			Alerts.showErrorAlert("Empty Category Error", "Mandatory Category is empty");
+			loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-task-form-view.fxml");
+			return;
+		}
+
 		Task task = new Task();
 		task.setTitle(nameField.getText());
 		task.setNotes("");
