@@ -9,17 +9,16 @@ import javafx.scene.control.ButtonType;
 public class Alerts {
 
 	public static final String ERROR_TITLE = "Error!!!";
-	public static final String ERROR_HEADER = "Something goes wrong!!!";
 
 	public static final String INFO_TITLE = "Information";
 	public static final String INFO_HEADER = "Information message!!!";
 
 	public static final String CONFIRMATION_TITLE = "Confirmation";
 
-	public static void showErrorAlert(String message) {
+	public static void showErrorAlert(String header, String message) {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle(ERROR_TITLE);
-		alert.setHeaderText(ERROR_HEADER);
+		alert.setHeaderText(header);
 		alert.setContentText(message);
 		alert.showAndWait();
 	}

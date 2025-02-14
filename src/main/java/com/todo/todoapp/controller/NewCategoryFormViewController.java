@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
+import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.domain.service.CategoriesService;
 import com.todo.todoapp.domain.service.LoadViewService;
@@ -46,6 +47,12 @@ public class NewCategoryFormViewController {
 	@FXML
 	public void createCategory() {
 		logger.info("Category to store: {}", nameField.getText());
+
+		if (nameField.getText() == null || nameField.getText().length() == 0) {
+			Alerts.showErrorAlert("Empty category Error", "Mandatory name is empty");
+			loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-category-form-view.fxml");
+			return;
+		}
 
 		categoriesService.store(nameField.getText());
 

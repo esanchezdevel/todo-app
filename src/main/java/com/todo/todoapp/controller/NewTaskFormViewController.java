@@ -84,7 +84,7 @@ public class NewTaskFormViewController {
 			tasksService.store(task);
 		} catch (AppException e) {
 			logger.error("Error storing task '" + task + "' in storage system. errorCode: " + e.getCode() + ", errorMessage: " + e.getMessage());
-			Alerts.showErrorAlert(e.getMessage());
+			Alerts.showErrorAlert("Something goes wrong!!!", e.getMessage());
 		}
 		
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
