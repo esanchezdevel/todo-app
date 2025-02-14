@@ -54,8 +54,15 @@ public class NewCategoryFormViewController {
 			return;
 		}
 
+		if (categoriesService.alreadyExists(nameField.getText())) {
+			Alerts.showErrorAlert("Category already exists", new StringBuilder("The category '")
+																						.append(nameField.getText())
+																						.append("' already exists")
+																						.toString());
+			loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-category-form-view.fxml");
+			return;
+		}
 		categoriesService.store(nameField.getText());
-
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");
 	}
 

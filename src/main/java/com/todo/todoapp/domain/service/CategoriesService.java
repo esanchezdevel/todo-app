@@ -39,6 +39,14 @@ public interface CategoriesService {
 	List<Category> getAll();
 
 	/**
+	 * Check if one category is already present in the storage system
+	 * 
+	 * @param category The category to check
+	 * @return True if exists. False if not exists
+	 */
+	boolean alreadyExists(String category);
+
+	/**
 	 * Check if one category has any task with the current status
 	 * 
 	 * @param category The category to check

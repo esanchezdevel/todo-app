@@ -65,6 +65,13 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 
 	@Override
+	public boolean alreadyExists(String category) {
+		List<String> categories = getAllNames();
+		return categories.stream().anyMatch(c -> c.equalsIgnoreCase(category));
+	}
+
+
+	@Override
 	public boolean categoryHasTasks(String category, TasksStatus status, TasksService tasksService) {
 		List<Task> tasks = tasksService.getTasksByStatus(status);
 		boolean result = false;
