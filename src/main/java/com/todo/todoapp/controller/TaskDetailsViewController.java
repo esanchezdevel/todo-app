@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
@@ -31,7 +32,7 @@ public class TaskDetailsViewController {
 	public static Task task;
 
 	@FXML
-	private Label titleLabel, nameLabel, categoryLabel, createdLabel, createdValueLabel, startedLabel, 
+	private Label titleLabel, taskDetailsLabel, nameLabel, categoryLabel, createdLabel, createdValueLabel, startedLabel, 
 					startedValueLabel, finishedLabel, finishedValueLabel, lastUpdatedLabel, lastUpdatedValueLabel, 
 					statusLabel, notesLabel;
 	@FXML
@@ -54,11 +55,12 @@ public class TaskDetailsViewController {
 	private void initialize () {
 		logger.info("Initialize view components...");
 
-		titleLabel.setText("Task Details");
+		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
+		taskDetailsLabel.setText("Task Details");
 		nameLabel.setText("Title: ");
 		nameField.setText(String.valueOf(task.getTitle()));
-		nameField.setMinWidth(550);
-		nameField.setMaxWidth(550);
+		nameField.setMinWidth(600);
+		nameField.setMaxWidth(600);
 
 		categoryLabel.setText("Category:");
 		categoryLabel.setMinWidth(200);
@@ -72,19 +74,15 @@ public class TaskDetailsViewController {
 		notesLabel.setMinWidth(200);
 		notesLabel.setMaxWidth(200);
 
-		categoryComboBox.setStyle("-fx-font-size: 12px; " +
+		categoryComboBox.setStyle("-fx-font-size: 15px; " +
 			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
-		categoryComboBox.setMaxWidth(500);
-		categoryComboBox.setMinWidth(500);
 		categoryComboBox.setItems(FXCollections.observableArrayList(categoriesService.getAllNames()));
 		categoryComboBox.setValue(task.getCategory());
 
-		statusComboBox.setStyle("-fx-font-size: 12px; " +
+		statusComboBox.setStyle("-fx-font-size: 15px; " +
 			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
-		statusComboBox.setMaxWidth(120);
-		statusComboBox.setMinWidth(120);
 		statusComboBox.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
 																			TasksStatus.DONE.value(), 
