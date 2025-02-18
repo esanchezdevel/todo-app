@@ -88,10 +88,13 @@ public class WelcomeViewController {
 	private void initialize() {
 		titleLabel.setText(Constants.APP_TITLE + " - " + Constants.APP_VERSION);
 		newTaskButton.setText("New task");
+		newTaskButton.setPrefWidth(140);
 		newCategoryButton.setText("New Category");
+		newCategoryButton.setPrefWidth(140);
 		deleteTaskButton.setText("Delete Task");
+		deleteTaskButton.setPrefWidth(140);
 		deleteCategoryButton.setText("Delete Category");
-		deleteCategoryButton.setPrefWidth(125);
+		deleteCategoryButton.setPrefWidth(140);
 
 		toDoLabel.setText(TasksStatus.TODO.value());
 		inProgressLabel.setText(TasksStatus.IN_PROGRESS.value());

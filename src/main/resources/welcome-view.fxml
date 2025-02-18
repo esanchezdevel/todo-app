@@ -24,9 +24,9 @@
     <Separator prefWidth="700" orientation="HORIZONTAL" AnchorPane.topAnchor="80.0" AnchorPane.leftAnchor="20.0"/>
 
     <CustomButton fx:id="newTaskButton" text="" onAction="#newTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
-    <CustomButton fx:id="newCategoryButton" text="" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="160.0" />
-    <CustomButton fx:id="deleteTaskButton" text="" onAction="#deleteTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="280.0" />
-    <CustomButton fx:id="deleteCategoryButton" text="" onAction="#deleteCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="400.0" />
+    <CustomButton fx:id="newCategoryButton" text="" onAction="#newCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="236.0" />
+    <CustomButton fx:id="deleteTaskButton" text="" onAction="#deleteTaskAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="428.0" />
+    <CustomButton fx:id="deleteCategoryButton" text="" onAction="#deleteCategoryAction" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="620.0" />
 
     <Label fx:id="toDoLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="40.0" />
     <Label fx:id="inProgressLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="117.0" />
@@ -34,7 +34,7 @@
     <Label fx:id="cancelledLabel" text="" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="309.0" />
 
 
-    <ScrollPane style="-fx-background-color: white;" fitToWidth="true" minHeight="569" maxHeight="569" minWidth="700" maxWidth="700" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" AnchorPane.topAnchor="206.0" AnchorPane.leftAnchor="40.0">
+    <ScrollPane style="-fx-background-color: white;" fitToWidth="true" minHeight="569" maxHeight="569" minWidth="725" maxWidth="725" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" AnchorPane.topAnchor="206.0" AnchorPane.leftAnchor="40.0">
         <content>
             <VBox fx:id="tasksVBox" spacing="10" style="-fx-background-color: white;">
             </VBox>

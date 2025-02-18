@@ -95,8 +95,8 @@ public class TasksServiceImpl implements TasksService {
 
 			Label categoryLabel = new Label();
 			categoryLabel.setText(category + ":");
-			categoryLabel.setMaxWidth(675);
-			categoryLabel.setMinWidth(675);
+			categoryLabel.setMaxWidth(725);
+			categoryLabel.setMinWidth(725);
 			categoryLabel.setWrapText(true);
 			categoryLabel.setStyle("-fx-font-size: 15px; " +
 						   	"-fx-font-weight: bold;" +
@@ -115,8 +115,8 @@ public class TasksServiceImpl implements TasksService {
 	
 				Label label = new Label();
 				label.setText(status == TasksStatus.DONE && t.getFinish() != null ? t.getFinish().substring(0, 10) + " - " + t.getTitle() : t.getTitle());
-				label.setMaxWidth(550);
-				label.setMinWidth(550);
+				label.setMaxWidth(545);
+				label.setMinWidth(545);
 				label.setWrapText(true);
 				label.setStyle("-fx-font-size: 15px; " +
 								"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
@@ -128,11 +128,11 @@ public class TasksServiceImpl implements TasksService {
 				});
 				
 				ComboBox<String> statusCombo = new ComboBox<>();
-				statusCombo.setStyle("-fx-font-size: 12px; " +
+				statusCombo.setStyle("-fx-font-size: 14px; " +
 				"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
 				"-fx-background-color: #ADD8E6;");
-				statusCombo.setMaxWidth(115);
-				statusCombo.setMinWidth(115);
+				statusCombo.setMaxWidth(140);
+				statusCombo.setMinWidth(140);
 				statusCombo.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																				TasksStatus.IN_PROGRESS.value(), 
 																				TasksStatus.DONE.value(), 
