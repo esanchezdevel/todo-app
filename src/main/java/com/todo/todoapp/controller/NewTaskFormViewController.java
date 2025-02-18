@@ -60,8 +60,8 @@ public class NewTaskFormViewController {
 		
 		nameField.setPrefWidth(600.0);
 		categoryComboBox.setPrefWidth(600);
-		categoryComboBox.setStyle("-fx-font-size: 15px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+		categoryComboBox.setStyle("-fx-font-size: 14px; " +
+			"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
 
 		List<String> categories = categoriesService.getAllNames();

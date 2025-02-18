@@ -31,7 +31,7 @@ public class CustomButton extends Button {
         this.setEffect(dropShadow);
 
 		this.setStyle("-fx-padding: 5px 10px 5px 10px;" + 
-						"-fx-font-size: 15px;" +
+						"-fx-font-size: 14px;" +
 						"-fx-alignment: center;");
 
 		this.setOnMousePressed(event -> {

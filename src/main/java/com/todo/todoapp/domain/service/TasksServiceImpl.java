@@ -129,7 +129,7 @@ public class TasksServiceImpl implements TasksService {
 				
 				ComboBox<String> statusCombo = new ComboBox<>();
 				statusCombo.setStyle("-fx-font-size: 14px; " +
-				"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+				"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
 				"-fx-background-color: #ADD8E6;");
 				statusCombo.setMaxWidth(140);
 				statusCombo.setMinWidth(140);

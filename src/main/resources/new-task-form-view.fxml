@@ -27,7 +27,7 @@
     <TextField fx:id="nameField" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="140.0" AnchorPane.leftAnchor="160.0"/>
 
     <Label fx:id="categoryLabel" text="" style="-fx-font-size: 15px;" AnchorPane.TopAnchor="190.0" AnchorPane.leftAnchor="40.0"/>
-    <ComboBox fx:id="categoryComboBox" style="-fx-font-size: 15px;" prefWidth="150.0" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="160.0" />
+    <ComboBox fx:id="categoryComboBox" style="-fx-font-size: 14px;" prefWidth="150.0" AnchorPane.TopAnchor="180.0" AnchorPane.leftAnchor="160.0" />
 
     <CustomButton fx:id="returnButton" text="Return" onAction="#goBack" AnchorPane.TopAnchor="240.0" AnchorPane.leftAnchor="40.0"/>
     <CustomButton fx:id="submitButton" text="Submit" onAction="#createTask" AnchorPane.TopAnchor="240.0" AnchorPane.leftAnchor="660.0"/>

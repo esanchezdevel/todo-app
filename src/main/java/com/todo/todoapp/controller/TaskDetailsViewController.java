@@ -74,14 +74,14 @@ public class TaskDetailsViewController {
 		notesLabel.setMinWidth(200);
 		notesLabel.setMaxWidth(200);
 
-		categoryComboBox.setStyle("-fx-font-size: 15px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+		categoryComboBox.setStyle("-fx-font-size: 14px; " +
+			"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
 		categoryComboBox.setItems(FXCollections.observableArrayList(categoriesService.getAllNames()));
 		categoryComboBox.setValue(task.getCategory());
 
-		statusComboBox.setStyle("-fx-font-size: 15px; " +
-			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+		statusComboBox.setStyle("-fx-font-size: 14px; " +
+			"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
 		statusComboBox.setItems(FXCollections.observableArrayList(List.of(TasksStatus.TODO.value(), 
 																			TasksStatus.IN_PROGRESS.value(), 
