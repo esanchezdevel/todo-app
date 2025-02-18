@@ -58,7 +58,11 @@ public class NewTaskFormViewController {
 
 		submitButton.setText("Create");
 		
-		nameField.setPrefWidth(500.0);
+		nameField.setPrefWidth(600.0);
+		categoryComboBox.setPrefWidth(600);
+		categoryComboBox.setStyle("-fx-font-size: 15px; " +
+			"-fx-padding: 5px 5px 5px 5px; " + // top right bottom left
+			"-fx-background-color: #ADD8E6;");
 
 		List<String> categories = categoriesService.getAllNames();
 		ObservableList<String> observableCategories = FXCollections.observableArrayList(categories);

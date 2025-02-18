@@ -41,7 +41,7 @@ public class NewCategoryFormViewController {
 
 		submitButton.setText("Create");
 		
-		nameField.setPrefWidth(500.0);
+		nameField.setPrefWidth(600.0);
 	}
 
 	@FXML
