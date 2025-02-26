@@ -128,7 +128,7 @@ public class TaskDetailsViewController {
 
 		if (newStatus == TasksStatus.DONE || newStatus == TasksStatus.CANCELLED) {
 			editedTask.setFinish(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-		} else if (newStatus == TasksStatus.IN_PROGRESS) {
+		} else if (newStatus == TasksStatus.IN_PROGRESS && task.getStatus() != TasksStatus.IN_PROGRESS) {
 			editedTask.setStart(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 			editedTask.setFinish("");
 		} else if (newStatus == TasksStatus.TODO) {
