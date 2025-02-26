@@ -142,6 +142,8 @@ public class TaskDetailsViewController {
 		tasksService.update(editedTask);
 
 		Alerts.showInfoAlert("Task Updated");
+		TaskDetailsViewController.task = editedTask;
+		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "task-details-view.fxml");
 	}
 
 	@FXML
