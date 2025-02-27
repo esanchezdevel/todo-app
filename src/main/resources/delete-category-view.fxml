@@ -26,7 +26,7 @@
     <CustomButton fx:id="returnButton" text="" onAction="#goBack" AnchorPane.TopAnchor="100.0" AnchorPane.leftAnchor="40.0" />
 
 
-    <ScrollPane style="-fx-background-color: white;" fitToWidth="true" minHeight="550" maxHeight="550" minWidth="700" maxWidth="700" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="40.0">
+    <ScrollPane style="-fx-background-color: white;" fitToWidth="true" minHeight="569" maxHeight="569" minWidth="725" maxWidth="725" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER" AnchorPane.topAnchor="160.0" AnchorPane.leftAnchor="40.0">
         <content>
             <VBox fx:id="categoriesVBox" spacing="10" style="-fx-background-color: white;">
             </VBox>

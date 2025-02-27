@@ -98,8 +98,8 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 			Label label = new Label();
 			label.setText(c);
-			label.setMaxWidth(550);
-			label.setMinWidth(550);
+			label.setMaxWidth(575);
+			label.setMinWidth(575);
 			label.setWrapText(true);
 			label.setStyle("-fx-font-size: 15px; " +
 							"-fx-padding: 10px 10px 10px 10px;"); // top right bottom left
