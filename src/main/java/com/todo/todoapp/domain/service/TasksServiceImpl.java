@@ -179,8 +179,8 @@ public class TasksServiceImpl implements TasksService {
 
 			Label categoryLabel = new Label();
 			categoryLabel.setText(category + ":");
-			categoryLabel.setMaxWidth(675);
-			categoryLabel.setMinWidth(675);
+			categoryLabel.setMaxWidth(725);
+			categoryLabel.setMinWidth(725);
 			categoryLabel.setWrapText(true);
 			categoryLabel.setStyle("-fx-font-size: 15px; " +
 						   	"-fx-font-weight: bold;" +
