@@ -3,6 +3,7 @@ package com.todo.todoapp.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +14,7 @@ import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.application.exception.AppException;
+import com.todo.todoapp.domain.model.Category;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.CategoriesService;
@@ -86,20 +88,32 @@ public class NewTaskFormViewController {
 		}
 
 		Task task = new Task();
-		task.setTitle(nameField.getText());
-		task.setNotes("");
-		task.setCategory(categoryComboBox.getValue());
-		task.setStatus(TasksStatus.TODO);
-		task.setCreated(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-		task.setLastUpdated(null);
-		task.setStart(null);
-		task.setFinish(null);
-
 		try {
+			Optional<Category> category = categoriesService.getCategory(categoryComboBox.getValue());
+
+			if (category.isEmpty()) {
+				String errorMsg = "Error. Category '" + categoryComboBox.getValue() + "' not found in database.";
+				logger.error(errorMsg);
+				Alerts.showErrorAlert("Category not found!!!", errorMsg);
+				loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-task-form-view.fxml");
+				return;
+			}
+
+			task.setTitle(nameField.getText());
+			task.setNotes("");
+			task.setCategory(category.get());
+			task.setStatus(TasksStatus.TODO);
+			task.setCreated(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+			task.setLastUpdated(null);
+			task.setStart(null);
+			task.setFinish(null);
+
 			tasksService.store(task);
 		} catch (AppException e) {
 			logger.error("Error storing task '" + task + "' in storage system. errorCode: " + e.getCode() + ", errorMessage: " + e.getMessage());
 			Alerts.showErrorAlert("Something goes wrong!!!", e.getMessage());
+			loadViewService.loadFXML(MainWindowController.contentPaneCopy, "new-task-form-view.fxml");
+			return;
 		}
 		
 		loadViewService.loadFXML(MainWindowController.contentPaneCopy, "welcome-view.fxml");

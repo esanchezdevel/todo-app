@@ -1,7 +1,9 @@
 package com.todo.todoapp.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.domain.model.Category;
 import com.todo.todoapp.domain.model.TasksStatus;
 
@@ -17,14 +19,6 @@ public interface CategoriesService {
 	void store(String category);
 
 	/**
-	 * Delete one category from the storage system.
-	 * This method will also delete all the tasks that belongs to that category
-	 * 
-	 * @param category The category to be deleted
-	 */
-	void delete(String category);
-
-	/**
 	 * Get all the categories names stored in the system
 	 * 
 	 * @return The List of categories names
@@ -37,6 +31,15 @@ public interface CategoriesService {
 	 * @return The list of categories
 	 */
 	List<Category> getAll();
+
+	/**
+	 * Get category from database looking by it's name
+	 * 
+	 * @param name The name of the category
+	 * @return Optional of Category. Empty if category is not found
+	 * @throws AppException
+	 */
+	Optional<Category> getCategory(String name) throws AppException;
 
 	/**
 	 * Check if one category is already present in the storage system
@@ -63,4 +66,12 @@ public interface CategoriesService {
 	 * @param categoriesVBox The VBox where to show the list of categories
 	 */
 	void showCategoriesToBeDeleted(VBox categoriesVBox);
+
+	/**
+	 * Delete one category from the storage system.
+	 * This method will also delete all the tasks that belongs to that category
+	 * 
+	 * @param category The category to be deleted
+	 */
+	void delete(String category);
 }

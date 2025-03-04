@@ -1,23 +1,28 @@
 package com.todo.todoapp.domain.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.todo.todoapp.application.components.Alerts;
 import com.todo.todoapp.application.components.CustomButton;
 import com.todo.todoapp.application.components.TasksSeparator;
+import com.todo.todoapp.application.exception.AppException;
 import com.todo.todoapp.domain.model.Category;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
-import com.todo.todoapp.infrastructure.storage.JsonRepository;
-import com.todo.todoapp.infrastructure.storage.TaskRepository;
+import com.todo.todoapp.infrastructure.storage.CategoryRepositoryJpa;
+import com.todo.todoapp.infrastructure.storage.TaskRepositoryJpa;
 
+import jakarta.transaction.Transactional;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -28,28 +33,29 @@ public class CategoriesServiceImpl implements CategoriesService {
 	private static final Logger logger = LogManager.getLogger(CategoriesServiceImpl.class);
 
 	@Autowired
-	@Qualifier("CategoryRepository")
-	private JsonRepository<Category> categoryRepository;
+	private CategoryRepositoryJpa categoryRepository;
 
 	@Autowired
-	private TaskRepository taskRepository;
+	private TaskRepositoryJpa taskRepository;
+
+	@Autowired
+	private ApplicationContext applicationContext;
 
 	@Override
 	public void store(String category) {
-		// get already existing categories
-		List<Category> categories = categoryRepository.getAll();
+		List<Category> categories = categoryRepository.findAll();
 
-		// add the new category
-		categories.add(new Category(category));
-
-		// store all the categories in the file overwritting it
-		categoryRepository.store(categories);		
+		if (categories.stream().anyMatch(c -> c.getName().equalsIgnoreCase(category))) {
+			logger.warn("The category '{}' already exists", category);
+			return;
+		}
+		categoryRepository.save(new Category(category));
 	}
 
 
 	@Override
 	public List<String> getAllNames() {
-		List<Category> categories = categoryRepository.getAll();
+		List<Category> categories = categoryRepository.findAll();
 
 		return categories
 					.stream()
@@ -60,9 +66,27 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 	@Override
 	public List<Category> getAll() {
-		return categoryRepository.getAll();
+		return categoryRepository.findAll();
 	}
 
+	@Override
+	public Optional<Category> getCategory(String name) throws AppException {
+		if (!StringUtils.hasLength(name)) {
+			String errorMsg = "Error. Mandatory parameter name not present";
+			logger.error(errorMsg);
+			throw new AppException(HttpStatus.BAD_REQUEST.value(), errorMsg);
+		}
+		try {
+			return categoryRepository.findByName(name);
+		} catch (Exception e) {
+			String errorMsg = new StringBuilder("Unexpected error happens retrieving category '")
+					.append(name)
+					.append("' from database: ")
+					.append(e.getMessage()).toString();
+			logger.error(errorMsg, e);
+			throw new AppException(HttpStatus.INTERNAL_SERVER_ERROR.value(), errorMsg);
+		}
+	}
 
 	@Override
 	public boolean alreadyExists(String category) {
@@ -73,19 +97,24 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 	@Override
 	public boolean categoryHasTasks(String category, TasksStatus status, TasksService tasksService) {
-		List<Task> tasks = tasksService.getTasksByStatus(status);
-		boolean result = false;
-		for (Task task : tasks) {
-			if (category.equals(task.getCategory())) {
-				result = true;
-				break;
-			}
+		Optional<Category> dbCategory = categoryRepository.findByName(category);
+
+		if (dbCategory.isEmpty()) {
+			logger.warn("Category '{}' not found in database", category);
+			return false;
 		}
-		return result;
+		logger.info("Category found: {}", dbCategory.get().getName());
+		if (dbCategory.get().getTasks() != null) {
+			List<Task> tasks = dbCategory.get().getTasks().stream().filter(t -> t.getStatus() == status).toList();
+			return tasks != null && tasks.size() > 0 ? true : false;
+		}
+		logger.info("Category does not have any task associated");
+		return false;
 	}
 
 
 	@Override
+	@Transactional
 	public void showCategoriesToBeDeleted(VBox categoriesVBox) {
 		List<String> categories = getAllNames();
 
@@ -114,7 +143,7 @@ public class CategoriesServiceImpl implements CategoriesService {
 											"Are you sure that you want to delete this category and all it's tasks?\n\n '" + c + "'", 
 											() -> {
 													logger.info("User accepted. Proceed to delete task {}", c);
-													delete(c);
+													applicationContext.getBean(CategoriesService.class).delete(c);
 													showCategoriesToBeDeleted(categoriesVBox);
 											}, 
 											() -> {
@@ -133,19 +162,20 @@ public class CategoriesServiceImpl implements CategoriesService {
 	}
 
 	@Override
+	@Transactional
 	public void delete(String category) {
+		Optional<Category> dbCategory = categoryRepository.findByName(category);
+
+		if (dbCategory.isEmpty()) {
+			logger.warn("Category '{}' not found in database", category);
+			return;
+		}
+
 		// Delete the tasks with that category
-		List<Task> tasks = taskRepository.getAll();
-		logger.info("Total number of tasks: {}", tasks.size());
-		tasks.removeIf(t -> t.getCategory().equals(category));
-		logger.info("Total number of tasks after delete: {}", tasks.size());
-		taskRepository.store(tasks);
+		dbCategory.get().getTasks().forEach(t -> taskRepository.deleteById(t.getId()));
 
 		// Delete the category
-		List<Category> categories = getAll();
-		logger.info("Total number of categories: {}", categories.size());
-		categories.removeIf(c -> c.getName().equals(category));
-		logger.info("Total number of categories after delete: {}", categories.size());
-		categoryRepository.store(categories);
+		categoryRepository.deleteById(dbCategory.get().getId());
+		logger.info("Category '{}' and all it's tasks deleted", category);
 	}
 }

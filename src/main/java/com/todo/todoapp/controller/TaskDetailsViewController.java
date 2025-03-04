@@ -3,6 +3,7 @@ package com.todo.todoapp.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.todo.todoapp.application.Constants;
 import com.todo.todoapp.application.components.Alerts;
+import com.todo.todoapp.domain.model.Category;
 import com.todo.todoapp.domain.model.Task;
 import com.todo.todoapp.domain.model.TasksStatus;
 import com.todo.todoapp.domain.service.CategoriesService;
@@ -78,7 +80,7 @@ public class TaskDetailsViewController {
 			"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
 			"-fx-background-color: #ADD8E6;");
 		categoryComboBox.setItems(FXCollections.observableArrayList(categoriesService.getAllNames()));
-		categoryComboBox.setValue(task.getCategory());
+		categoryComboBox.setValue(task.getCategory().getName());
 
 		statusComboBox.setStyle("-fx-font-size: 14px; " +
 			"-fx-padding: 2px 5px 2px 5px; " + // top right bottom left
@@ -107,10 +109,13 @@ public class TaskDetailsViewController {
 	private void editTask (){
 		logger.info("Edit task '{}' clicked...", task.getId());
 
+
+		Optional<Category> category = categoriesService.getCategory(categoryComboBox.getValue());
+
 		Task editedTask = new Task();
 		editedTask.setId(task.getId());
 		editedTask.setTitle(nameField.getText());
-		editedTask.setCategory(categoryComboBox.getValue());
+		editedTask.setCategory(category.get());
 		editedTask.setCreated(task.getCreated());
 		editedTask.setLastUpdated(task.getLastUpdated());
 		editedTask.setStart(task.getStart());
