@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -18,6 +19,7 @@ public class Task extends AppEntity {
 
 	private String title;
 
+	@Lob
 	private String notes;
 
 	private TasksStatus status;
